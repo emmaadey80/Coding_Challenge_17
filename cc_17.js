@@ -73,3 +73,32 @@ console.log(`VIP Customer Total Spent: $${vipCustomer1.getTotalSpent().toFixed(2
 
 console.log("\nTask 4: Build a Client Report System");
 
+// Task 4: Build a Client Report System
+
+const customers = [
+    customer1,
+    new Customer("Omni Man", "omniman@yahoo.com"),
+    new Customer("Cecil Stedman", "cecilstedman@gmail.com"),
+    vipCustomer1,
+    new VIPCustomer("Mark Grayson", "mark.grayson100@yahoo.com", "Platinum")
+  ];
+  
+  // add purchases for customers
+  customers[1].addPurchase(600); // Omni Man spent $600
+  customers[2].addPurchase(450); // Cecil spent $450
+  customers[4].addPurchase(700); // Mark spent $700
+  
+  const salesRep2 = new SalesRep("Bernard Adey");  // assign customers to a sales rep
+  customers.forEach(customer => salesRep2.addClient(customer));
+  
+  const totalRevenue = customers.reduce((total, customer) => total + customer.getTotalSpent(), 0); // calculate total revenue from all customers
+  console.log(`Total Revenue: $${totalRevenue}`);
+  
+  const highSpenders = customers.filter(customer => customer.getTotalSpent() > 500); // find customers who spent over $500
+  console.log("High Spending Customers:", highSpenders.map(customer => customer.name));
+  
+  const customerSummary = customers.map(customer => ({ // create a customer summary (name + total spent)
+    name: customer.name,
+    totalSpent: customer.getTotalSpent()
+  }));
+  console.log("Customer Summary:", customerSummary);
