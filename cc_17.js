@@ -29,4 +29,47 @@ class Customer { // creating a customer class
 
     console.log("\nTask 2: Create a SalesRep Class");
     
-    
+    // Task 2: Create a SalesRep Class
+
+class SalesRep { // creating a salesRep class
+    constructor(name) { // properties is name
+        this.name = name
+        this.clients = []; // client array
+    }
+    addClient(customer) { // adds a customer to the sales rep client list
+        this.clients.push(customer);
+    }
+    getClientTotal(name) { // finds client by name and returns total
+        const client = this.clients.find(customer => customer.name === name);
+    return client ? client.getTotalSpent() : 0;
+    }
+}
+// test logging for SalesRep class
+const salesRep1 = new SalesRep("Sandy Canes"); // adding new SalesRep  
+salesRep1.addClient(customer1);
+salesRep1.addClient(customer2);
+console.log(`Sales Rep: ${salesRep1.name}, Client Total for Jeigh: $${salesRep1.getClientTotal("Jeigh Ives")}`);
+console.log(`Sales Rep: ${salesRep1.name}, Client Total for Alfie: $${salesRep1.getClientTotal("Alfie Adey")}`);
+
+console.log("\nTask 3: Create a VIPCustomer Class (extends Customer)");
+
+// Task 3: Create a VIPCustomer Class (extends Customer)
+
+class VIPCustomer extends Customer { // extending cutomer class to VIP
+    constructor(name, email, viplevel) {
+        super(name, email); // extending customers properties
+        this.vipLevel = this.vipLevel; // viplevel gold, platinum
+
+    }
+    getTotalSpent() { // override method
+        const originalTotal = super.getTotalSpent();
+        return originalTotal * 1.10; // adding 10% bonus
+      }
+};
+const vipCustomer1 = new VIPCustomer("Harley", "harleydavidson@gmail.com", "Gold");
+vipCustomer1.addPurchase(682); // purcahse of $682
+vipCustomer1.addPurchase(48);// purchase of $48
+console.log(`VIP Customer Total Spent: $${vipCustomer1.getTotalSpent().toFixed(2)}`); // output: VIP Customer Total Spent: $803.00
+
+console.log("\nTask 4: Build a Client Report System");
+
